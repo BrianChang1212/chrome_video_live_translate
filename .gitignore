@@ -1,3 +1,6 @@
+# Local Cursor config (use workspace-level .cursor/skills instead)
+.cursor/
+
 .DS_Store
 Thumbs.db
 *.zip
