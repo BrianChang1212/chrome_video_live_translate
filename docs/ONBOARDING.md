@@ -23,6 +23,11 @@ chrome_video_live_translate/
   manifest.json
   README.md
   README.zh-TW.md
+  package.json              # npm scripts: test, test:integration (Node 18+)
+  tests/
+    architecture/             # contract tests (mock fetch)
+    integration/              # optional live whisper-server + Ollama
+    helpers/
   icons/
   docs/
     DOC_SYNC.md / .zh-TW.md
@@ -95,12 +100,21 @@ No need to merge codebases.
 
 ## 7. Verification
 
+**Node (repo root, Node 18+)** — full detail: **`README.md`** section **Automated tests**.
+
+| Command | Needs whisper-server / Ollama? | Purpose |
+|---------|-------------------------------|---------|
+| `npm test` | **No** (mocked HTTP) | Manifest / message contracts, `local_pipeline` behavior: `tests/architecture/` |
+| `npm run test:integration` | **Optional** (per-test `skip` if down) | Live `/api/tags`, `/api/chat`, ASR + optional end-to-end chunk: `tests/integration/`; env: `VLT_WHISPER_URL`, `VLT_OLLAMA_URL`, `VLT_OLLAMA_MODEL`, `VLT_INTEGRATION_WAV_BASE64`; Windows: `scripts\run_integration_tests.bat` |
+
+**Scripts (no Node test runner):**
+
 - `scripts\ollama_translate_smoke_test.bat` (or `.ps1`): `POST /api/chat`, `think=false`, prompt shape matches `local_pipeline.js`; default model **`translategemma:4b`**.
 - `scripts\start_whisper_server_example.bat`: start ASR (edit paths).
 
 ---
 
-*Scanned: `src/`, `scripts/`, `manifest.json`; version = `manifest.json` **`version`**; doc map = **`docs/DOC_SYNC.md`**.*
+*Scanned: `src/`, `scripts/`, `tests/`, `manifest.json`; version = `manifest.json` **`version`**; doc map = **`docs/DOC_SYNC.md`**.*
 
 ---
 

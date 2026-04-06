@@ -3,7 +3,7 @@
 | 項目 | 內容 |
 |------|------|
 | `manifest.json` 版本 | **0.7.3** |
-| 本文件更新日 | **2026-04-06** |
+| 本文件更新日 | **2026-04-07** |
 | 狀態摘要 | **本機管線 MVP 可用**：分頁擷音 → whisper-server ASR →（可選）Ollama **多語向**翻譯 → 浮層字幕；Popup／選項 **語向同步**、⇄ 交換、Popup **切段滑桿** |
 
 **權威依據**：版本號以 `manifest.json` 的 **`version`** 為準；行為細節以 `README.md`、`src/background/local_pipeline.js` 為準。  
@@ -23,6 +23,7 @@
 - [x] 選項頁「首次使用」：安裝／啟動說明與複製終端機指令（無法代執行本機程式）
 - [x] **v0.6.2**：`manifest` **icons**／工具列圖示；Popup／選項頁深色儀表 UI；**VLT DEBUG** 儀表板；字幕浮層雙列；**除錯／字幕**不透明度滑桿
 - [x] **v0.7.3**：`src/shared/vlt_locale_meta.js` 等 **多語系**設定；選項與 Popup **語音翻譯語向**即時同步；**⇄ 交換**來源／譯為；Popup **切段時長**滑桿快速調整（`hfChunkSec` 與選項同步）；**`docs/DOC_SYNC.*`** 文件版號索引
+- [x] **自動化測試（Node 18+）**：`npm test`（`tests/architecture/`、HTTP mock）；可選 `npm run test:integration`（`tests/integration/`、本機服務或逐項 skip）— 說明見 **`README.zh-TW.md` 自動化測試**、**`docs/ONBOARDING.zh-TW.md`** 第 7 節、**`docs/LOCAL_SETUP.zh-TW.md`** 第五節
 
 **版本錨點**：細節以根目錄 **`manifest.json`** 為準（目前 **0.7.3**）。
 
@@ -65,6 +66,7 @@
 | 2026-04-06 | **v0.6.2**：圖示資源、`manifest` icons；Popup／選項／除錯 HUD／字幕浮層 UI 與不透明度設定；文件版本對齊 |
 | 2026-04-06 | **v0.7.3**：多語向 UI、Popup／選項語向同步與交換、Popup 切段滑桿；README／ONBOARDING／本快照／`tasks/todo.md` 對齊 |
 | 2026-04-06 | **文件完整同步**：新增 **`docs/DOC_SYNC.*`**；README／ONBOARDING 專案樹補齊 `docs/` 全檔；全系文件與 **manifest `version` 0.7.3** 交叉引用 |
+| 2026-04-07 | **Node 測試與文件**：`tests/architecture/`、`tests/integration/`、`package.json` 指令；`docs/ONBOARDING.*` §7、`docs/LOCAL_SETUP.*` 第五節、`DOC_SYNC.*` 表格；README／`README.zh-TW.md` 專案樹與 **自動化測試** 小節 |
 
 ---
 

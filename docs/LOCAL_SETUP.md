@@ -60,7 +60,8 @@ Or use **`scripts/start_ollama_allow_extensions.bat`** (English comments)—stil
 ### Verify
 
 - Browser or extension can reach `http://127.0.0.1:11434`.  
-- Optional: run `scripts/ollama_translate_smoke_test.ps1`.
+- Optional: run `scripts/ollama_translate_smoke_test.ps1`.  
+- Optional (**Node 18+**): from repo root, `npm run test:integration` exercises live Ollama (and whisper-server if up); see **`README.md`** → **Automated tests**.
 
 ---
 
@@ -121,6 +122,17 @@ Edit **`scripts/start_whisper_server_example.bat`** (`WHISPER_DIR`, `MODEL_PATH`
 | Port in use | Stop duplicate Ollama/whisper-server or change port and Options URL. |
 
 More detail: root **README.md** “Troubleshooting”.
+
+---
+
+## 5. Automated checks (Node 18+)
+
+From the **repository root** (after `npm` is available):
+
+- **`npm test`** — No local services required; architecture / contract tests under `tests/architecture/` (mocked `fetch`).  
+- **`npm run test:integration`** — Optional **live** checks against whisper-server and Ollama (individual tests **skip** if a service is unreachable). Env overrides: `VLT_WHISPER_URL`, `VLT_OLLAMA_URL`, `VLT_OLLAMA_MODEL`, `VLT_INTEGRATION_WAV_BASE64`; gate: `VLT_INTEGRATION`. Windows: **`scripts\run_integration_tests.bat`**.
+
+Authoritative parameter list: **`README.md`** section **Automated tests**.
 
 ---
 

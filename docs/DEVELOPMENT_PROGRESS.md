@@ -3,7 +3,7 @@
 | Item | Detail |
 |------|--------|
 | `manifest.json` version | **0.7.3** |
-| Last updated (this doc) | **2026-04-06** |
+| Last updated (this doc) | **2026-04-07** |
 | Summary | **Local pipeline MVP works:** tab capture → whisper-server ASR → (optional) Ollama **multi-pair** translation → overlay subtitles; Popup / Options **direction sync**, ⇄ swap, Popup **chunk slider** |
 
 **Sources of truth:** version from `manifest.json` **`version`**; behavior from `README.md`, `src/background/local_pipeline.js`.  
@@ -23,6 +23,7 @@
 - [x] Options “first run”: install/start notes and copy-paste commands (extension cannot run local binaries)
 - [x] **v0.6.2:** `manifest` **icons** / toolbar; Popup/Options dark UI; **VLT DEBUG** HUD; dual-row overlay; debug/subtitle opacity sliders
 - [x] **v0.7.3:** `src/shared/vlt_locale_meta.js` and **locale** wiring; Options ↔ Popup **speech direction** sync; **⇄** swap source/target; Popup **chunk duration** slider (`hfChunkSec` synced with Options); **`docs/DOC_SYNC.*`** version index
+- [x] **Automated tests (Node 18+):** `npm test` (`tests/architecture/`, mocked HTTP); optional `npm run test:integration` (`tests/integration/`, live services or per-test skip) — documented in **`README.md`** **Automated tests**, **`docs/ONBOARDING.md`** §7, **`docs/LOCAL_SETUP.md`** §5
 
 **Version anchor:** details follow root **`manifest.json`** (currently **0.7.3**).
 
@@ -65,6 +66,7 @@ From `docs/PRODUCT_DESIGN_FRAMEWORK.md` Phase 2 or MVP gaps—**no committed sch
 | 2026-04-06 | **v0.6.2:** icons, `manifest` icons; Popup/Options/HUD/overlay UI and opacity; doc version alignment |
 | 2026-04-06 | **v0.7.3:** multi-pair UI, direction sync & swap, Popup chunk slider; README / ONBOARDING / this snapshot / `tasks/todo.md` aligned |
 | 2026-04-06 | **Full doc sync:** `docs/DOC_SYNC.*`, README trees, cross-refs to **manifest `version` 0.7.3** |
+| 2026-04-07 | **Node tests + docs:** `tests/architecture/`, `tests/integration/`, `package.json` scripts; `docs/ONBOARDING.*` §7, `docs/LOCAL_SETUP.*` §5, `DOC_SYNC.*` rows; README / `README.zh-TW.md` repo trees + **Automated tests** |
 
 ---
 

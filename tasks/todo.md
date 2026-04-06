@@ -6,10 +6,11 @@
 
 - [x] MV3 tab capture → offscreen chunking → whisper-server ASR
 - [x] Ollama **multi-pair** translation (optional) and 403 / `OLLAMA_ORIGINS` path
-- [x] Overlay, options page, smoke tests and launcher scripts
+- [x] Overlay, options page, smoke scripts, launcher scripts, **`npm test`** / **`npm run test:integration`**
 - [x] README (EN/zh-TW), ONBOARDING, development snapshot docs
 - [x] **v0.6.2:** Popup/options UI, debug HUD, dark subtitle bar, opacity sliders, `manifest` icons
 - [x] **v0.7.3:** Speech direction (Popup/options sync), ⇄ swap, Popup chunk slider, `vlt_locale_meta`, **`DOC_SYNC.*`** index
+- [x] **Node automated tests:** `tests/architecture/`, `tests/integration/`, docs in README / ONBOARDING §7 / LOCAL_SETUP §5
 
 ## Backlog (prioritize as needed)
 
@@ -27,3 +28,4 @@
 - **2026-04-06:** **v0.7.3** doc pass: README / ONBOARDING / DEVELOPMENT_PROGRESS / this file aligned with multi-pair, Popup chunking, swap.
 - **2026-04-06:** **Full doc sync:** `docs/DOC_SYNC.*`, README doc tree, cross-refs to **manifest 0.7.3**.
 - **2026-04-07:** **English-primary docs:** root `README.md` + `docs/*.md`; `README.zh-TW.md` + `docs/*.zh-TW.md`; **Languages** section on each (EN ↔ 繁中).
+- **2026-04-07:** **Node tests + doc pass:** architecture + optional integration tests; README trees include `package.json` / `tests/`; ONBOARDING §7, LOCAL_SETUP §5, DEVELOPMENT_PROGRESS review row.

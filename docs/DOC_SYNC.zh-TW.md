@@ -15,8 +15,8 @@
 | 檔案（英文主／繁中） | 用途 | 應反映現版之處 |
 |------|------|----------------|
 | [`DEVELOPMENT_PROGRESS.md`](DEVELOPMENT_PROGRESS.md)／[`.zh-TW`](DEVELOPMENT_PROGRESS.zh-TW.md) | 開發快照、已完成／待辦 | 表頭 manifest 版號、狀態摘要、§5 |
-| [`ONBOARDING.md`](ONBOARDING.md)／[`.zh-TW`](ONBOARDING.zh-TW.md) | 新進／目錄／資料流 | 開頭版本句、產品描述 |
-| [`LOCAL_SETUP.md`](LOCAL_SETUP.md)／[`.zh-TW`](LOCAL_SETUP.zh-TW.md) | 本機 whisper-server／Ollama | 檔首「以 manifest 為準」、服務說明 |
+| [`ONBOARDING.md`](ONBOARDING.md)／[`.zh-TW`](ONBOARDING.zh-TW.md) | 新進／目錄／資料流、**§7 驗證**（煙測腳本 + `npm test`／`test:integration`） | 開頭版本句、產品描述、§7 表格 |
+| [`LOCAL_SETUP.md`](LOCAL_SETUP.md)／[`.zh-TW`](LOCAL_SETUP.zh-TW.md) | 本機 whisper-server／Ollama；**第五節** Node 檢查（`npm test`、`test:integration`） | 檔首「以 manifest 為準」、服務說明、§5 |
 | [`OPTIMIZATION_NOTES.md`](OPTIMIZATION_NOTES.md)／[`.zh-TW`](OPTIMIZATION_NOTES.zh-TW.md) | 效能與平台限制構想 | 檔首最後更新、管線描述 |
 | [`PRODUCT_DESIGN_FRAMEWORK.md`](PRODUCT_DESIGN_FRAMEWORK.md)／[`.zh-TW`](PRODUCT_DESIGN_FRAMEWORK.zh-TW.md) | 產品框架草案 | 「對應程式狀態」表列 |
 | [`PHASE_REPORT_TRANSLATION_PIPELINE.md`](PHASE_REPORT_TRANSLATION_PIPELINE.md)／[`.zh-TW`](PHASE_REPORT_TRANSLATION_PIPELINE.zh-TW.md) | **歷史**（錨定 0.5.6） | 僅檔首導讀指向現版；**不重寫**內文 |

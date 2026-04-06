@@ -108,8 +108,13 @@ Enable **debug overlay** in Popup → reload the video tab → capture again; **
 chrome_video_live_translate/
   LICENSE
   manifest.json
+  package.json
   README.md
   README.zh-TW.md
+  tests/
+    architecture/
+    integration/
+    helpers/
   icons/
   docs/
     DOC_SYNC.md
@@ -137,6 +142,11 @@ chrome_video_live_translate/
     popup/
     offscreen/
 ```
+
+### Automated tests (Node 18+)
+
+- **`npm test`** — Architecture / contract tests with a **mocked** `fetch` (no local services): `tests/architecture/`.
+- **`npm run test:integration`** — Optional **live** checks against **whisper-server** and **Ollama** (sets `VLT_INTEGRATION` if unset). Each test **skips** if the corresponding service is unreachable, so the command still exits **0**. Override URLs: `VLT_WHISPER_URL`, `VLT_OLLAMA_URL`, `VLT_OLLAMA_MODEL`. Optional real audio for ASR-heavy cases: `VLT_INTEGRATION_WAV_BASE64`. Windows: `scripts\run_integration_tests.bat`.
 
 See **`docs/ONBOARDING.md`** (if anything conflicts with `manifest.json`, prefer this README and source).
 

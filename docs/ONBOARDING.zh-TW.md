@@ -23,6 +23,11 @@ chrome_video_live_translate/
   manifest.json
   README.md
   README.zh-TW.md
+  package.json               # npm：test、test:integration（需 Node 18+）
+  tests/
+    architecture/            # 契約測試（mock fetch）
+    integration/             # 可選：連線本機 whisper-server + Ollama
+    helpers/
   icons/                     # 擴充圖示（manifest / 工具列）
   docs/
     DOC_SYNC.md / .zh-TW.md
@@ -95,12 +100,21 @@ chrome_video_live_translate/
 
 ## 7. 驗證
 
+**Node（專案根目錄，Node 18+）** — 完整參數與環境變數見 **`README.md`**／**`README.zh-TW.md`** 的 **Automated tests**／**自動化測試** 小節。
+
+| 指令 | 是否需 whisper-server／Ollama | 說明 |
+|------|-------------------------------|------|
+| `npm test` | **否**（HTTP 已 mock） | manifest／訊息契約、`local_pipeline` 行為：`tests/architecture/` |
+| `npm run test:integration` | **可選**（服務未起則該測項 skip） | 連線 `/api/tags`、`/api/chat`、ASR 與可選端到端 chunk：`tests/integration/`；可設 `VLT_WHISPER_URL`、`VLT_OLLAMA_URL`、`VLT_OLLAMA_MODEL`、`VLT_INTEGRATION_WAV_BASE64`；Windows 可用 `scripts\run_integration_tests.bat` |
+
+**腳本（不依賴 Node test runner）：**
+
 - `scripts\ollama_translate_smoke_test.bat`（或 `.ps1`）：`POST /api/chat`、`think=false`，**提示詞**與 `local_pipeline.js` 內 TranslateGemma 格式一致；預設模型 **`translategemma:4b`**。
 - `scripts\start_whisper_server_example.bat`：啟動 ASR 服務（路徑自改）。
 
 ---
 
-*掃描範圍：`src/`、`scripts/`、`manifest.json`；版號以 `manifest.json` → **`version`** 為準；文件對齊見 **`docs/DOC_SYNC.md`**／**`.zh-TW.md`**。*
+*掃描範圍：`src/`、`scripts/`、`tests/`、`manifest.json`；版號以 `manifest.json` → **`version`** 為準；文件對齊見 **`docs/DOC_SYNC.md`**／**`.zh-TW.md`**。*
 
 ---
 
