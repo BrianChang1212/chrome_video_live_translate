@@ -1,12 +1,5 @@
 # Local setup (whisper-server, Ollama)
 
-## Languages
-
-- [English](LOCAL_SETUP.md)
-- [繁體中文](LOCAL_SETUP.zh-TW.md)
-
----
-
 For users who have **not installed** or **don’t know how to start** services. The Chrome extension **cannot** install or run local programs—complete these steps on the machine.  
 Extension version follows root `manifest.json` **`version`** (currently **0.7.3**). **Doc/version index:** [`docs/DOC_SYNC.md`](DOC_SYNC.md).
 
@@ -132,3 +125,10 @@ More detail: root **README.md** “Troubleshooting”.
 ---
 
 *Options “first run” can copy common commands; this file is the detailed reference.*
+
+---
+
+## Languages
+
+- [English](LOCAL_SETUP.md)
+- [繁體中文](LOCAL_SETUP.zh-TW.md)

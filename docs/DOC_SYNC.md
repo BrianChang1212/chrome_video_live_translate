@@ -1,12 +1,5 @@
 # Documentation & version sync (Video Live Translate)
 
-## Languages
-
-- [English](DOC_SYNC.md)
-- [繁體中文](DOC_SYNC.zh-TW.md)
-
----
-
 **Authoritative app version:** the **`"version"`** field in root `manifest.json`.
 
 | Field | Current value |
@@ -40,3 +33,10 @@
 ---
 
 *Review alongside `manifest.json` **0.7.3**; bump the table when the version changes.*
+
+---
+
+## Languages
+
+- [English](DOC_SYNC.md)
+- [繁體中文](DOC_SYNC.zh-TW.md)

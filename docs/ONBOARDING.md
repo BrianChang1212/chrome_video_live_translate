@@ -1,12 +1,5 @@
 # Onboarding (Video Live Translate)
 
-## Languages
-
-- [English](ONBOARDING.md)
-- [繁體中文](ONBOARDING.zh-TW.md)
-
----
-
 Aligned with **`manifest.json` → `version` (currently 0.7.3)**. Full index: **[`DOC_SYNC.md`](DOC_SYNC.md)**. **Local-only** whisper-server (ASR) and Ollama (translation); direction and chunking sync with Popup / Options.
 
 ---
@@ -108,3 +101,10 @@ No need to merge codebases.
 ---
 
 *Scanned: `src/`, `scripts/`, `manifest.json`; version = `manifest.json` **`version`**; doc map = **`docs/DOC_SYNC.md`**.*
+
+---
+
+## Languages
+
+- [English](ONBOARDING.md)
+- [繁體中文](ONBOARDING.zh-TW.md)

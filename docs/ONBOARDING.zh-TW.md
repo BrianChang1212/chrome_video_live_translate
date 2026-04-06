@@ -1,12 +1,5 @@
 # 新進／新環境上手（Video Live Translate）
 
-## Languages
-
-- [English](ONBOARDING.md)
-- [繁體中文](ONBOARDING.zh-TW.md)
-
----
-
 本文件對齊 **`manifest.json` → `version`（目前 0.7.3）**；完整文件索引見 **[`DOC_SYNC.md`](DOC_SYNC.md)**（英文）／**[`DOC_SYNC.zh-TW.md`](DOC_SYNC.zh-TW.md)**（繁中）。**僅本機** whisper-server（ASR）與 Ollama（翻譯）；語向與切段等與 Popup／選項即時同步。
 
 ---
@@ -108,3 +101,10 @@ chrome_video_live_translate/
 ---
 
 *掃描範圍：`src/`、`scripts/`、`manifest.json`；版號以 `manifest.json` → **`version`** 為準；文件對齊見 **`docs/DOC_SYNC.md`**／**`.zh-TW.md`**。*
+
+---
+
+## Languages
+
+- [English](ONBOARDING.md)
+- [繁體中文](ONBOARDING.zh-TW.md)

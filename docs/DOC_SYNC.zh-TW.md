@@ -1,12 +1,5 @@
 # 文件與版本同步（Video Live Translate）
 
-## Languages
-
-- [English](DOC_SYNC.md)
-- [繁體中文](DOC_SYNC.zh-TW.md)
-
----
-
 **權威程式版本**：根目錄 `manifest.json` 的 **`"version"`** 欄位。**英文主文件**為本目錄同名無後綴之 `.md`（如 [`DOC_SYNC.md`](DOC_SYNC.md)）。
 
 | 欄位 | 目前值 |
@@ -40,3 +33,10 @@
 ---
 
 *本檔與 `manifest.json` **0.7.3** 一併檢閱；更版後請更新上表「目前值」。*
+
+---
+
+## Languages
+
+- [English](DOC_SYNC.md)
+- [繁體中文](DOC_SYNC.zh-TW.md)

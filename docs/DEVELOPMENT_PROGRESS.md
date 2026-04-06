@@ -1,12 +1,5 @@
 # Development snapshot (Video Live Translate)
 
-## Languages
-
-- [English](DEVELOPMENT_PROGRESS.md)
-- [繁體中文](DEVELOPMENT_PROGRESS.zh-TW.md)
-
----
-
 | Item | Detail |
 |------|--------|
 | `manifest.json` version | **0.7.3** |
@@ -72,3 +65,10 @@ From `docs/PRODUCT_DESIGN_FRAMEWORK.md` Phase 2 or MVP gaps—**no committed sch
 | 2026-04-06 | **v0.6.2:** icons, `manifest` icons; Popup/Options/HUD/overlay UI and opacity; doc version alignment |
 | 2026-04-06 | **v0.7.3:** multi-pair UI, direction sync & swap, Popup chunk slider; README / ONBOARDING / this snapshot / `tasks/todo.md` aligned |
 | 2026-04-06 | **Full doc sync:** `docs/DOC_SYNC.*`, README trees, cross-refs to **manifest `version` 0.7.3** |
+
+---
+
+## Languages
+
+- [English](DEVELOPMENT_PROGRESS.md)
+- [繁體中文](DEVELOPMENT_PROGRESS.zh-TW.md)

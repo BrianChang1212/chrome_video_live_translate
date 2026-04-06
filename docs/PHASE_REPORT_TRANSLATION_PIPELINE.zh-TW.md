@@ -1,12 +1,5 @@
 # 階段性完成報告：英文語音 → 繁中字幕（翻譯管線與 Ollama 整合）
 
-## Languages
-
-- [English](PHASE_REPORT_TRANSLATION_PIPELINE.md)
-- [繁體中文](PHASE_REPORT_TRANSLATION_PIPELINE.zh-TW.md)
-
----
-
 > **歷史文件（v0.5.x 存檔）：** 與現行程式與設定**可能不一致**。**現況**請以 **`docs/DOC_SYNC.md`**／**`.zh-TW.md`**（版號索引）、**`docs/DEVELOPMENT_PROGRESS.*`**、根目錄 **README**、**`docs/ONBOARDING.*`** 與 **`src/background/local_pipeline.js`** 為準（本機 whisper-server + Ollama；**多語向**與 UI 行為見 README／`src/shared/vlt_locale_meta.js` 等）。
 
 | 項目 | 內容 |
@@ -148,3 +141,10 @@
 ---
 
 *本文件正文由專案維護流程產出，與當時 `manifest.json` **0.5.6** 對齊。**現行程式版號**請以根目錄 `manifest.json`（目前 **0.7.3**）及 **[`docs/DOC_SYNC.md`](DOC_SYNC.md)**／**[`.zh-TW.md`](DOC_SYNC.zh-TW.md)** 為準。*
+
+---
+
+## Languages
+
+- [English](PHASE_REPORT_TRANSLATION_PIPELINE.md)
+- [繁體中文](PHASE_REPORT_TRANSLATION_PIPELINE.zh-TW.md)

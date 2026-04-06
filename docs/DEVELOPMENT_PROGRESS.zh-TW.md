@@ -1,12 +1,5 @@
 # 開發進度快照（Video Live Translate）
 
-## Languages
-
-- [English](DEVELOPMENT_PROGRESS.md)
-- [繁體中文](DEVELOPMENT_PROGRESS.zh-TW.md)
-
----
-
 | 項目 | 內容 |
 |------|------|
 | `manifest.json` 版本 | **0.7.3** |
@@ -72,3 +65,10 @@
 | 2026-04-06 | **v0.6.2**：圖示資源、`manifest` icons；Popup／選項／除錯 HUD／字幕浮層 UI 與不透明度設定；文件版本對齊 |
 | 2026-04-06 | **v0.7.3**：多語向 UI、Popup／選項語向同步與交換、Popup 切段滑桿；README／ONBOARDING／本快照／`tasks/todo.md` 對齊 |
 | 2026-04-06 | **文件完整同步**：新增 **`docs/DOC_SYNC.*`**；README／ONBOARDING 專案樹補齊 `docs/` 全檔；全系文件與 **manifest `version` 0.7.3** 交叉引用 |
+
+---
+
+## Languages
+
+- [English](DEVELOPMENT_PROGRESS.md)
+- [繁體中文](DEVELOPMENT_PROGRESS.zh-TW.md)
