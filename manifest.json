@@ -1,0 +1,47 @@
+{
+  "manifest_version": 3,
+  "name": "Video Live Translate",
+  "version": "0.7.3",
+  "description": "Tab audio capture; local whisper-server ASR + local Ollama translation among popular world languages (no third-party inference APIs).",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "permissions": ["activeTab", "storage", "tabCapture", "offscreen", "scripting"],
+  "host_permissions": [
+    "<all_urls>",
+    "http://127.0.0.1/*",
+    "http://localhost/*"
+  ],
+  "background": {
+    "service_worker": "src/background/service_worker.js"
+  },
+  "options_ui": {
+    "page": "src/options/options.html",
+    "open_in_tab": true
+  },
+  "action": {
+    "default_popup": "src/popup/popup.html",
+    "default_title": "Video Live Translate",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": [
+        "src/shared/vlt_constants.js",
+        "src/shared/vlt_messages.js",
+        "src/content/overlay.js"
+      ],
+      "css": ["src/content/overlay.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}

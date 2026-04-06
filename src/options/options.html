@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Video Live Translate — 選項</title>
+    <link rel="stylesheet" href="options.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="topbar">
+        <div class="topbar__brand">
+          <span class="topbar__logo" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M12 2L4 6v6c0 5 3.5 9.5 8 11 4.5-1.5 8-6 8-11V6l-8-4z"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linejoin="round"
+                fill="color-mix(in srgb, var(--accent) 22%, transparent)"
+              />
+              <path d="M9 12l2 2 4-5" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </span>
+          <div class="topbar__titles">
+            <h1 class="topbar__title">Video Live Translate</h1>
+            <p class="topbar__status"><span class="topbar__dot" aria-hidden="true"></span> LOCAL PIPELINE ACTIVE</p>
+          </div>
+        </div>
+        <button type="button" class="btn btn-ghost" id="btnFirstUseTutorial" aria-expanded="false" aria-controls="firstUsePanel">
+          <span class="btn-ghost__icon" aria-hidden="true">▶</span>
+          首次使用教學
+        </button>
+      </header>
+
+      <p class="info-banner">
+        <span class="info-banner__icon" aria-hidden="true">i</span>
+        <span>
+          語音辨識走本機 <strong>whisper-server</strong>（whisper.cpp）；繁中翻譯走本機 <strong>Ollama</strong>（<code>/api/chat</code>、<code>think=false</code>）。請求僅送往下方設定的本機 URL。
+        </span>
+      </p>
+
+      <div class="first-use-panel" id="firstUsePanel" hidden>
+        <section class="card card--flush">
+            <div class="card__head">
+              <span class="card__head-icon" aria-hidden="true">&gt;_</span>
+              <h2 class="card__title">快速啟動本機服務</h2>
+            </div>
+            <p class="card__lead">
+              擴充無法代為執行本機程式。請複製指令到終端機；模型路徑請改為你的檔案。詳見擴充套件內 <code>docs/LOCAL_SETUP.zh-TW.md</code>。
+            </p>
+
+            <div class="code-block">
+              <div class="code-block__bar">
+                <span class="code-block__label">WHISPER SERVER (8080)</span>
+                <button type="button" class="btn-icon" id="btnCopyWhisperQuick" title="複製">⎘</button>
+              </div>
+              <pre class="code-block__pre" id="preWhisperQuick">whisper-server -m "C:/path/to/ggml-base.bin" --host 127.0.0.1 --port 8080</pre>
+            </div>
+
+            <div class="code-block">
+              <div class="code-block__bar">
+                <span class="code-block__label">OLLAMA CORS ALLOW (POWERSHELL)</span>
+                <button type="button" class="btn-icon" id="btnCopyOllamaPsQuick" title="複製">⎘</button>
+              </div>
+              <pre class="code-block__pre" id="preOllamaPsQuick">$env:OLLAMA_ORIGINS="chrome-extension://*"; ollama serve</pre>
+            </div>
+
+            <div class="setup-more">
+              <h3 class="setup-more__h">更多步驟</h3>
+              <ul class="setup-more__list">
+                <li>
+                  Ollama 安裝：<a href="https://ollama.com/download" target="_blank" rel="noreferrer">ollama.com/download</a>
+                </li>
+                <li>拉取模型（與預設一致）：</li>
+              </ul>
+              <div class="setup-more__actions">
+                <button type="button" class="btn btn-small" id="btnCopyOllamaPull">複製：拉取預設模型</button>
+              </div>
+              <ul class="setup-more__list">
+                <li>僅啟動 Ollama：<button type="button" class="link-btn" id="btnCopyOllamaServe">複製 ollama serve</button></li>
+                <li>
+                  cmd 環境：
+                  <button type="button" class="link-btn" id="btnCopyOllamaServeCmd">複製 OLLAMA_ORIGINS + ollama serve</button>
+                </li>
+              </ul>
+              <p class="setup-more__note">
+                亦可用專案 <code>scripts/start_whisper_server_example.bat</code>、<code>scripts/start_ollama_allow_extensions.bat</code>（請先依路徑編輯）。
+              </p>
+            </div>
+          </section>
+      </div>
+
+      <section class="card card--lang-axis">
+        <div class="card__head">
+          <button type="button" class="card__head-icon card__head-swap" id="vltLangAxisSwap">
+            ⇄
+          </button>
+          <h2 class="card__title">語音翻譯語向</h2>
+          <span class="card__badge">與工具列 Popup 同步</span>
+        </div>
+        <p class="card__lead card__lead--tight">
+          主要設定：在此或 Popup 擇一調整即可，會<strong>即時</strong>寫入相同設定；來源語變更時，翻譯提示詞預設改為「與辨識相同」。
+        </p>
+        <div class="grid-2">
+          <label class="field field-float">
+            <span class="field-float__label">來源語言（聽譯／Whisper）</span>
+            <select id="vltAsrSourceLang" aria-label="來源語言"></select>
+          </label>
+          <label class="field field-float">
+            <span class="field-float__label">譯為（字幕與 Ollama 輸出）</span>
+            <select id="vltTranslateTargetLang" aria-label="譯為"></select>
+          </label>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card__head">
+          <span class="card__head-icon" aria-hidden="true">◎</span>
+          <h2 class="card__title">本機 Whisper（whisper-server）</h2>
+          <span class="card__badge">POST /inference</span>
+        </div>
+        <div class="grid-2">
+          <label class="field field-float">
+            <span class="field-float__label">根網址（無尾隨斜線）</span>
+            <input
+              type="text"
+              id="vltLocalWhisperUrl"
+              autocomplete="off"
+              spellcheck="false"
+              placeholder="http://127.0.0.1:8080"
+            />
+          </label>
+          <div class="field field-float">
+            <span class="field-float__label">每段音訊長度 <strong id="chunkSecLabel" class="field-float__value">—</strong></span>
+            <input type="range" id="hfChunkSec" />
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card__head">
+          <span class="card__head-icon" aria-hidden="true">文A</span>
+          <h2 class="card__title">翻譯管線（Ollama）</h2>
+        </div>
+        <label class="field field-float">
+          <span class="field-float__label">翻譯模式</span>
+          <select id="vltTranslateEngine">
+            <option value="ollama">本機 Ollama（辨識稿 → 上方「譯為」語言）</option>
+            <option value="none">不翻譯（字幕僅辨識稿）</option>
+          </select>
+        </label>
+        <p class="card__lead card__lead--tight">
+          <strong>進階</strong>：若提示詞來源需與聽譯語言不同，可於下方指定（多數情況請保持「與辨識語言相同」）。
+        </p>
+        <label class="field field-float">
+          <span class="field-float__label">翻譯提示詞來源（Ollama）</span>
+          <select id="vltTranslateSourceLang" aria-label="翻譯提示詞來源"></select>
+        </label>
+        <div class="grid-2">
+          <label class="field field-float">
+            <span class="field-float__label">Ollama 根網址</span>
+            <input type="text" id="vltOllamaUrl" autocomplete="off" spellcheck="false" />
+          </label>
+          <label class="field field-float">
+            <span class="field-float__label">模型名稱（須已 pull）</span>
+            <input type="text" id="vltOllamaModel" autocomplete="off" spellcheck="false" />
+          </label>
+        </div>
+        <div class="warn-box">
+          <span class="warn-box__icon" aria-hidden="true">!</span>
+          <p>
+            若字幕變成 <code>[辨識稿]</code> 或 Ollama 日誌 <code>403</code>：請設定 <code>OLLAMA_ORIGINS=chrome-extension://*</code> 後重啟
+            Ollama，或使用專案 <code>scripts/start_ollama_allow_extensions.bat</code>。
+          </p>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card__head">
+          <span class="card__head-icon" aria-hidden="true">T</span>
+          <h2 class="card__title">字幕外觀（頁面浮層）</h2>
+        </div>
+        <p class="card__lead card__lead--tight">
+          字級可隨視窗以 <code>clamp</code> 縮放；播放頁右下角可拖曳字幕框寬度（與下方數值同步）。
+        </p>
+        <label class="field field-float">
+          <span class="field-float__label">字體家族</span>
+          <select id="captionFontFamily">
+            <option value="system">系統預設（UI Sans）</option>
+            <option value="jhenghei">繁中優先（微軟正黑／蘋方／Noto Sans TC）</option>
+            <option value="sans">無襯線（泛用）</option>
+            <option value="serif">襯線（標題感）</option>
+            <option value="mono">等寬字</option>
+          </select>
+        </label>
+
+        <div class="toggle-card">
+          <label class="toggle">
+            <input type="checkbox" id="captionFontDynamic" checked />
+            <span class="toggle__track" aria-hidden="true"><span class="toggle__knob"></span></span>
+            <span class="toggle__text">依視窗寬度縮放（clamp）</span>
+          </label>
+        </div>
+
+        <div id="captionDynamicBlock" class="grid-3">
+          <label class="field field-float">
+            <span class="field-float__label">下限（px）</span>
+            <input type="number" id="captionFontMinPx" min="10" max="28" step="1" value="13" />
+          </label>
+          <label class="field field-float">
+            <span class="field-float__label">上限（px）</span>
+            <input type="number" id="captionFontMaxPx" min="14" max="40" step="1" value="22" />
+          </label>
+          <label class="field field-float">
+            <span class="field-float__label">比例（vw）</span>
+            <input type="number" id="captionFontVw" min="1.5" max="8" step="0.1" value="3.5" />
+          </label>
+        </div>
+
+        <div id="captionFixedBlock" class="field field-float" hidden>
+          <span class="field-float__label">譯文固定字級（px）</span>
+          <input type="number" id="captionFontPx" min="11" max="32" step="1" value="16" />
+        </div>
+
+        <div class="field field-float">
+          <span class="field-float__label">字幕框最大寬度 <strong id="captionWidthLabel" class="field-float__value">720px</strong></span>
+          <input type="range" id="captionBoxWidthPx" min="280" max="920" step="10" value="720" />
+        </div>
+        <div class="field field-float">
+          <span class="field-float__label"
+            >浮層不透明度（VLT DEBUG 與字幕視窗共用）
+            <strong id="debugOpacityLabel" class="field-float__value">100%</strong></span
+          >
+          <input type="range" id="vltDebugOpacityPct" min="35" max="100" step="1" value="100" />
+        </div>
+      </section>
+
+      <p class="footer-hint">
+        請在 <strong>YouTube／播放頁分頁</strong>使用工具列「開始擷取」。辨識語言請於上方 Whisper 區選擇（含日文）；部分 DRM 站無法擷取分頁音訊。
+      </p>
+
+      <div class="save-row">
+        <button type="button" id="btnSave" class="btn btn-save">
+          <svg class="btn-save__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M6 3h9l4 4v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z" stroke="currentColor" stroke-width="1.5" />
+            <path d="M8 3v6h8V3" stroke="currentColor" stroke-width="1.5" />
+            <path d="M8 17h8v4H8z" fill="currentColor" opacity="0.25" stroke="currentColor" stroke-width="1.5" />
+          </svg>
+          儲存配置
+        </button>
+        <span id="saveStatus" class="status" aria-live="polite"></span>
+      </div>
+
+      <footer class="foot-links">
+        <a id="linkDocumentation" href="#" target="_blank" rel="noreferrer">DOCUMENTATION</a>
+        <span class="foot-links__sep">·</span>
+        <a id="linkOptimization" href="#" target="_blank" rel="noreferrer">LOCAL SETUP &amp; NOTES</a>
+      </footer>
+    </div>
+    <script src="../shared/vlt_constants.js"></script>
+    <script src="../shared/vlt_locale_meta.js"></script>
+    <script src="../shared/vlt_messages.js"></script>
+    <script src="../shared/vlt_source_lang.js"></script>
+    <script src="../shared/vlt_translate_engine.js"></script>
+    <script src="options.js"></script>
+  </body>
+</html>
