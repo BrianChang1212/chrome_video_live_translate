@@ -163,7 +163,7 @@
       return "已複製到剪貼簿，請貼到終端機執行。";
     },
     clipboardFailed() {
-      return "複製失敗，請手動輸入或見 docs/LOCAL_SETUP.zh-TW.md。";
+      return "複製失敗，請手動輸入或見 docs/LOCAL_SETUP.md（英文）或 docs/LOCAL_SETUP.zh-TW.md。";
     },
     optionsSaveOk() {
       return "已儲存。字幕外觀會即時套用；擷取相關請「停止」再「開始」。";

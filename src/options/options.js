@@ -372,10 +372,10 @@ if (typeof chrome !== "undefined" && chrome.runtime?.getURL) {
   const linkOptimization = document.getElementById("linkOptimization");
   try {
     if (linkDocumentation) {
-      linkDocumentation.href = chrome.runtime.getURL("docs/ONBOARDING.zh-TW.md");
+      linkDocumentation.href = chrome.runtime.getURL("docs/ONBOARDING.md");
     }
     if (linkOptimization) {
-      linkOptimization.href = chrome.runtime.getURL("docs/LOCAL_SETUP.zh-TW.md");
+      linkOptimization.href = chrome.runtime.getURL("docs/LOCAL_SETUP.md");
     }
   } catch {
     /* ignore */

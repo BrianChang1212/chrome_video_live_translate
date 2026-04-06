@@ -1,8 +1,15 @@
 # 優化構想紀錄（Video Live Translate）
 
-> **位置**：與擴充**同一 repository** 之本檔 `docs/OPTIMIZATION_NOTES.zh-TW.md`（**不**另建獨立 repo）。  
+## Languages
+
+- [English](OPTIMIZATION_NOTES.md)
+- [繁體中文](OPTIMIZATION_NOTES.zh-TW.md)
+
+---
+
+> **位置**：與擴充**同一 repository** 之 `docs/OPTIMIZATION_NOTES.md`／**本檔 `.zh-TW.md`**（**不**另建獨立 repo）。  
 > **來源**：管線（分頁擷音 → whisper-server ASR → Ollama 翻譯）之效率與平台限制討論整理（語向依使用者設定）。  
-> **建立**：2026-04-06｜**最後更新**：2026-04-06（**文件完整同步**；程式 **manifest 0.7.3**；索引 [`DOC_SYNC.zh-TW.md`](DOC_SYNC.zh-TW.md)；§6 本機服務自動啟動）
+> **建立**：2026-04-06｜**最後更新**：2026-04-06（**文件完整同步**；程式 **manifest 0.7.3**；索引 [`DOC_SYNC.md`](DOC_SYNC.md)／[`.zh-TW`](DOC_SYNC.zh-TW.md)；§6 本機服務自動啟動）
 
 ---
 
@@ -79,4 +86,4 @@
 
 ---
 
-*與 [`DOC_SYNC.zh-TW.md`](DOC_SYNC.zh-TW.md)、`docs/DEVELOPMENT_PROGRESS.zh-TW.md`、`tasks/todo.md` 並讀，可對齊現況版本與待辦。*
+*與 [`DOC_SYNC.md`](DOC_SYNC.md)／[`.zh-TW`](DOC_SYNC.zh-TW.md)、`docs/DEVELOPMENT_PROGRESS.*`、`tasks/todo.md` 並讀，可對齊現況版本與待辦。*

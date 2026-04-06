@@ -1,62 +1,69 @@
-# Video Live Translate（Chrome 擴充功能）
+# Video Live Translate (Chrome Extension)
 
-**擴充版本**：**0.7.3**（與根目錄 `manifest.json` 的 **`version`** 一致）。**文件同步清單**見 [`docs/DOC_SYNC.zh-TW.md`](docs/DOC_SYNC.zh-TW.md)。
+## Languages
 
-Manifest V3：**擷取目前分頁音訊**，以**完全本機**管線做 **ASR（Whisper）→（可選）Ollama 翻譯 → 浮層字幕**：
-
-- **ASR**：本機 [whisper.cpp](https://github.com/ggml-org/whisper.cpp) **`whisper-server`**（`POST …/inference`，multipart `file`）；音訊僅送至選項內填寫的本機網址。辨識語言可 **自動偵測**或**手選**（與 Popup／選項「語音翻譯語向」同步）。
-- **翻譯**：本機 **Ollama**（`/api/chat`，`think=false`）；**來源語與目標語**可於 Popup 或選項頁設定（**多種常用語言**互譯，預設情境仍常見如英／日 → 繁中）；可關閉翻譯僅顯示辨識稿。
-- **費用**：擴充本身與上述管線**無按次計費 API**；成本為**自有硬體／電力**與本機服務維護。
-
-**章節導覽（由上而下）：** 專案概要 → 功能與系統架構圖 → 快速開始 → 除錯 → 專案結構與原始碼 → 相關專案 → 疑難排解 → 隱私與限制 → 分發與貢獻 → 授權
-
-**開發進度：** 見 [`docs/DEVELOPMENT_PROGRESS.zh-TW.md`](docs/DEVELOPMENT_PROGRESS.zh-TW.md)（版號與 `manifest.json` 對齊）；任務勾選見 [`tasks/todo.md`](tasks/todo.md)。**效能／管線優化構想**見 [`docs/OPTIMIZATION_NOTES.zh-TW.md`](docs/OPTIMIZATION_NOTES.zh-TW.md)。**版號與各 doc 對齊方式**見 [`docs/DOC_SYNC.zh-TW.md`](docs/DOC_SYNC.zh-TW.md)。
+- [English](README.md)
+- [繁體中文](README.zh-TW.md)
 
 ---
 
-## 專案概要
+**Extension version:** **0.7.3** (matches **`version`** in root `manifest.json`). **Doc sync index:** [`docs/DOC_SYNC.md`](docs/DOC_SYNC.md).
 
-### 能做什麼
+Manifest V3: **capture the active tab’s audio** and run a **fully local** pipeline: **ASR (Whisper) → (optional) Ollama translation → overlay subtitles**.
 
-- **語音辨識**：僅透過你填在選項裡的 **whisper-server 根網址**（預設 `http://127.0.0.1:8080`）。請先執行 `scripts/start_whisper_server_example.bat`（路徑請自改）。
-- **翻譯**：**Ollama**（預設 `http://127.0.0.1:11434`）或選 **不翻譯**（字幕僅辨識稿）。
-- **語向**：**Popup** 與 **選項頁**頂部「語音翻譯語向」即時同步（含 **⇄ 一鍵交換**來源／譯為；來源為「自動偵測」時無法交換）；進階可另設「翻譯提示詞來源」。
-- **切段**：音訊 **2–12 秒** 一段（預設 4 秒），字幕**分段更新**；**Popup「系統管線摘要」內可拖曳滑桿**快速調整切段秒數（與選項頁同步）。
+- **ASR:** local [whisper.cpp](https://github.com/ggml-org/whisper.cpp) **`whisper-server`** (`POST …/inference`, multipart `file`); audio is sent only to the base URL you set in options. Recognition language can be **auto-detected** or **manual** (in sync with Popup / Options “speech translation direction”).
+- **Translation:** local **Ollama** (`/api/chat`, `think=false`); **source and target** can be set in Popup or Options (**many common languages**; typical pairs include EN/JA → Traditional Chinese). Translation can be turned off to show recognition text only.
+- **Cost:** the extension and this pipeline use **no per-call third-party inference APIs**; cost is **your own hardware / power** and maintaining local services.
 
-### 術語與縮寫
+**Sections (top to bottom):** overview → architecture → quick start → debugging → repo layout → related projects → troubleshooting → privacy & limits → distribution & contributing → license
 
-- **ASR**：自動語音辨識（語音→文字），由 **whisper-server** 依設定語言產出**辨識稿**（可自動偵測語言）。
-- **翻譯**：ASR 之後由 **Ollama** 將辨識稿轉成**所選目標語**（可關閉）。
-
-### 切段與限制
-
-部分 **DRM** 網站無法擷取分頁音訊。**整段匯出 SRT** 尚未內建。
+**Development status:** [`docs/DEVELOPMENT_PROGRESS.md`](docs/DEVELOPMENT_PROGRESS.md) (aligned with `manifest.json`); task checklist [`tasks/todo.md`](tasks/todo.md). **Performance / pipeline ideas:** [`docs/OPTIMIZATION_NOTES.md`](docs/OPTIMIZATION_NOTES.md). **How versions map across docs:** [`docs/DOC_SYNC.md`](docs/DOC_SYNC.md).
 
 ---
 
-## 功能與系統架構圖
+## Overview
 
-**流程摘要：** Popup／選項 → **Service Worker** → **Offscreen**（`tabCapture`、PCM→WAV）→ `VLT_RUN_ASR_CHUNK` → **`local_pipeline.js`**（whisper-server + Ollama）→ **Content** 浮層。
+### What it does
+
+- **Speech recognition:** only via the **whisper-server base URL** in options (default `http://127.0.0.1:8080`). Run `scripts/start_whisper_server_example.bat` first (edit paths).
+- **Translation:** **Ollama** (default `http://127.0.0.1:11434`) or **no translation** (subtitles show ASR text only).
+- **Language direction:** **Popup** and **Options** keep “speech translation direction” in sync (including **⇄ swap** source/target; swap is disabled when source is “auto-detect”). Advanced: separate “translation prompt source” if configured.
+- **Chunking:** audio is processed in **2–12 s** chunks (default 4 s); subtitles update per chunk. **Popup “pipeline summary”** includes a slider for chunk length (synced with Options).
+
+### Terms
+
+- **ASR:** automatic speech recognition (speech → text). **whisper-server** outputs **recognition text** (language from settings or auto-detect).
+- **Translation:** after ASR, **Ollama** turns that text into the **selected target language** (optional).
+
+### Limits
+
+Many **DRM-protected** sites cannot expose tab audio to capture. **Full-session SRT export** is not built in yet.
+
+---
+
+## Architecture
+
+**Flow:** Popup / Options → **Service Worker** → **Offscreen** (`tabCapture`, PCM→WAV) → `VLT_RUN_ASR_CHUNK` → **`local_pipeline.js`** (whisper-server + Ollama) → **Content** overlay.
 
 ```mermaid
 flowchart TB
-  subgraph CHROME["Chrome 擴充（Manifest V3）"]
+  subgraph CHROME["Chrome extension (Manifest V3)"]
     direction TB
-    POP["Popup／選項頁<br/>（本機 URL、語向、切段）"]
+    POP["Popup / Options<br/>(local URL, direction, chunking)"]
     SW["Background<br/>service_worker.js"]
-    LP["local_pipeline.js<br/>whisper-server ASR<br/>Ollama 翻譯"]
-    OFF["Offscreen<br/>PCM→WAV、切段"]
+    LP["local_pipeline.js<br/>whisper-server ASR<br/>Ollama translation"]
+    OFF["Offscreen<br/>PCM→WAV, chunking"]
     CS["Content overlay"]
 
     POP -->|"START_CAPTURE"| SW
-    SW <-->|"INIT_CAPTURE／音訊串"| OFF
+    SW <-->|"INIT_CAPTURE / audio"| OFF
     OFF -->|"VLT_RUN_ASR_CHUNK"| SW
     SW --> LP
-    LP -->|"辨識稿／譯文"| SW
+    LP -->|"ASR / translation"| SW
     SW -->|"VLT_SUBTITLE"| CS
   end
 
-  subgraph LOCAL["本機服務（使用者自啟）"]
+  subgraph LOCAL["Local services (user-started)"]
     WH["whisper-server<br/>:8080/inference"]
     OL["Ollama<br/>:11434/api/chat"]
   end
@@ -65,121 +72,125 @@ flowchart TB
   LP --> OL
 ```
 
-節點換行使用 `<br/>`。若 Mermaid 無法預覽，請用支援 Mermaid 的編輯器。
+Use `<br/>` for line breaks in nodes. Preview with a Mermaid-capable viewer if needed.
 
-### 本機服務能否由擴充自動啟動？
+### Can the extension auto-start local services?
 
-**不能。** 擴充無法代為執行 `.exe`。請手動或工作排程啟動 **whisper-server**、**Ollama**；進階可考慮 [Native messaging](https://developer.chrome.com/docs/extensions/develop/concepts/native-messaging)。
-
----
-
-## 快速開始
-
-### 1. 載入擴充
-
-`chrome://extensions` → 開發人員模式 → **載入未封裝項目** → 選本資料夾。
-
-### 2. 本機環境
-
-**尚未安裝？** 請先看 **[`docs/LOCAL_SETUP.zh-TW.md`](docs/LOCAL_SETUP.zh-TW.md)**（安裝 whisper-server、Ollama、啟動指令與 403 說明）。擴充**選項頁**頂部亦有「首次使用」摺疊區，可**複製**常用終端機指令。
-
-1. 啟動 **whisper-server**（見 `scripts/start_whisper_server_example.bat` 或 LOCAL_SETUP）。
-2. 啟動 **Ollama**（`ollama serve`）；模型需先 `ollama pull`（預設建議：[TranslateGemma](https://ollama.com/library/translategemma) `ollama pull translategemma:4b`，約 3.3GB；可改用 `translategemma:12b` 等）。若擴充對 Ollama **403**，請設 **`OLLAMA_ORIGINS=chrome-extension://*`** 後重啟 Ollama，或使用 `scripts/start_ollama_allow_extensions.bat`。
-
-### 3. 選項
-
-**擴充選項** → 填 **本機 whisper-server 網址**（必填）→ 設定 **語音翻譯語向**（與 Popup 同步）→ 選 **Ollama 翻譯** 或 **不翻譯** → 確認 Ollama URL／模型（**預設模型名**與煙測腳本一致為 **`translategemma:4b`**，可自改）→ **儲存**。TranslateGemma 路線的 **user 提示詞**結構對齊 [TranslateGemma 文件](https://ollama.com/library/translategemma)（實際語向由設定與 `vlt_llm_config` 決定）。
-
-### 4. 使用
-
-一般網頁播放有聲音的內容 → 工具列 → 在 Popup 確認 **聽譯來源／譯為** 與（必要時）**切段秒數** → **開始擷取音訊**。變更 Whisper／Ollama URL 或翻譯引擎等選項後請 **停止再開始**；**僅調語向或切段秒數**可依介面提示決定是否重開擷取。改 manifest 後 **重新載入擴充**。
+**No.** The extension cannot run `.exe` files for you. Start **whisper-server** and **Ollama** manually or via OS scheduling; advanced: [Native messaging](https://developer.chrome.com/docs/extensions/develop/concepts/native-messaging).
 
 ---
 
-## 除錯：如何確認有音訊資料
+## Quick start
 
-Popup 勾選 **除錯浮層** → 重新整理影片分頁 → 再擷取；應見 **raw RMS** 變動。進階：Service worker / offscreen Console。
+### 1. Load the extension
+
+`chrome://extensions` → Developer mode → **Load unpacked** → select this folder.
+
+### 2. Local services
+
+**First-time setup?** See **[`docs/LOCAL_SETUP.md`](docs/LOCAL_SETUP.md)** (whisper-server, Ollama, startup commands, 403 notes). The **Options** page has a “first run” section with copy-paste terminal commands.
+
+1. Start **whisper-server** (`scripts/start_whisper_server_example.bat` or LOCAL_SETUP).
+2. Start **Ollama** (`ollama serve`); pull a model (default suggestion: [TranslateGemma](https://ollama.com/library/translategemma) `ollama pull translategemma:4b`, ~3.3GB; `translategemma:12b` etc. also work). If the extension gets **403** from Ollama, set **`OLLAMA_ORIGINS=chrome-extension://*`** and restart Ollama, or use `scripts/start_ollama_allow_extensions.bat`.
+
+### 3. Options
+
+**Extension options** → set **local whisper-server base URL** (required) → **speech translation direction** (synced with Popup) → **Ollama translation** or **no translation** → confirm Ollama URL / model (default **`translategemma:4b`**, same as smoke test scripts) → **Save**. TranslateGemma **user prompt** shape follows [TranslateGemma docs](https://ollama.com/library/translategemma) (actual pair comes from settings and `vlt_llm_config`).
+
+### 4. Use
+
+Open a page with audio → toolbar → in Popup confirm **source / target** and chunk length if needed → **Start capture**. After changing Whisper / Ollama URLs or engine, **stop and start** again; for **direction or chunk size only**, follow on-screen hints. After **manifest** changes, **reload the extension**.
 
 ---
 
-## 專案結構與原始碼
+## Debugging: confirm audio
+
+Enable **debug overlay** in Popup → reload the video tab → capture again; **raw RMS** should move. Advanced: Service worker / offscreen console.
+
+---
+
+## Repository layout
 
 ```
 chrome_video_live_translate/
   LICENSE
   manifest.json
   README.md
-  icons/                          # 擴充圖示（PNG + 向量母稿 icon.svg）
+  README.zh-TW.md
+  icons/
   docs/
-    DOC_SYNC.zh-TW.md               # 版號與文件同步索引（與 manifest 對齊）
-    LOCAL_SETUP.zh-TW.md            # 本機 whisper-server／Ollama 安裝與啟動
-    ONBOARDING.zh-TW.md             # 新進上手、目錄與資料流
-    DEVELOPMENT_PROGRESS.zh-TW.md   # 開發進度快照
-    PRODUCT_DESIGN_FRAMEWORK.zh-TW.md  # 產品框架草案
-    OPTIMIZATION_NOTES.zh-TW.md     # 效能／管線與平台限制構想
-    PHASE_REPORT_TRANSLATION_PIPELINE.zh-TW.md  # 歷史：v0.5.6 管線結案（見檔首）
+    DOC_SYNC.md
+    DOC_SYNC.zh-TW.md
+    LOCAL_SETUP.md
+    LOCAL_SETUP.zh-TW.md
+    ONBOARDING.md
+    ONBOARDING.zh-TW.md
+    DEVELOPMENT_PROGRESS.md
+    DEVELOPMENT_PROGRESS.zh-TW.md
+    PRODUCT_DESIGN_FRAMEWORK.md
+    PRODUCT_DESIGN_FRAMEWORK.zh-TW.md
+    OPTIMIZATION_NOTES.md
+    OPTIMIZATION_NOTES.zh-TW.md
+    PHASE_REPORT_TRANSLATION_PIPELINE.md
+    PHASE_REPORT_TRANSLATION_PIPELINE.zh-TW.md
   tasks/
-    todo.md                         # 任務勾選（與上列快照對齊）
+    todo.md
   scripts/
   src/
-    shared/                  # vlt_constants、vlt_locale_meta（語系表）、vlt_messages、管線共用設定
+    shared/
     background/
-      service_worker.js
-      local_pipeline.js      # whisper-server + Ollama
     content/
     options/
     popup/
     offscreen/
-      asr_free.js            # PCM→WAV、RMS
-      pcm-worklet.js
 ```
 
-詳見 **`docs/ONBOARDING.zh-TW.md`**（若內文與 `manifest.json` 當前版本衝突，以本 README 與原始碼為準）。
+See **`docs/ONBOARDING.md`** (if anything conflicts with `manifest.json`, prefer this README and source).
 
 ---
 
-## 相關專案：`whisper_transcribe_test_repo`
+## Related project: `whisper_transcribe_test_repo`
 
-可另備 repo 用 **whisper-cli** 做**整檔**轉 `.txt`／`.srt`；與本擴充 **whisper-server** 路徑不同，無需合併。
-
----
-
-## 疑難排解
-
-### Popup：`reading 'local'`
-
-**v0.2.1+** 由 popup 讀 storage 傳 offscreen；請重新載入擴充。
-
-### Ollama **403**、字幕僅見方括號內之辨識稿（翻譯未生效）
-
-見上文 **OLLAMA_ORIGINS** 與 `scripts/start_ollama_allow_extensions.bat`。
-
-### 本機 Whisper 連線失敗
-
-確認 **whisper-server** 已 listen、選項網址與埠正確、防火牆未擋 **localhost**。
+A separate repo can use **whisper-cli** for **whole-file** `.txt` / `.srt`; this extension uses **whisper-server** streaming chunks—no need to merge codebases.
 
 ---
 
-## 隱私與限制
+## Troubleshooting
 
-- **音訊與辨識稿**僅送向你設定的 **本機 whisper-server**；**譯文推論**在 **本機 Ollama**（選「不翻譯」則無 Ollama 請求）。
+### Popup: `reading 'local'`
+
+**v0.2.1+** Popup reads storage for offscreen; **reload the extension**.
+
+### Ollama **403**, subtitles show only bracketed English (translation not applied)
+
+See **OLLAMA_ORIGINS** above and `scripts/start_ollama_allow_extensions.bat`.
+
+### Whisper connection failed
+
+Confirm **whisper-server** is listening, Options URL/port are correct, and firewall allows **localhost**.
 
 ---
 
-## 分發與貢獻
+## Privacy & limits
 
-| 管道 | 定位 |
-|------|------|
-| **GitHub（主要）** | 原始碼與議題；**載入未封裝項目**。 |
-| **Chrome 商店（補充）** | 可選安裝入口；細節以 GitHub 為主。 |
-
-歡迎 **Issue／PR**。上架商店請另備隱私與權限說明（本版**無**對外推論 API 主機權限，僅 `<all_urls>` 供內容腳本字幕浮層與本機 localhost）。
+- **Audio and recognition text** go only to your configured **local whisper-server**; **translation** runs on **local Ollama** (no Ollama calls if “no translation”).
 
 ---
 
-## 授權
+## Distribution & contributing
 
-[**Apache License 2.0**](https://www.apache.org/licenses/LICENSE-2.0) — 全文見 [`LICENSE`](LICENSE)。
+| Channel | Role |
+|--------|------|
+| **GitHub (primary)** | Source and issues; **Load unpacked**. |
+| **Chrome Web Store (optional)** | Another install path; details still on GitHub. |
 
-- **SPDX**：`Apache-2.0`
-- **著作權**：Copyright 2026 Brian Chang
+Issues and PRs welcome. Store listing needs its own privacy / permission narrative (this build has **no** remote inference host permission beyond `<all_urls>` for the content-script overlay and localhost).
+
+---
+
+## License
+
+[**Apache License 2.0**](https://www.apache.org/licenses/LICENSE-2.0) — see [`LICENSE`](LICENSE).
+
+- **SPDX:** `Apache-2.0`
+- **Copyright:** Copyright 2026 Brian Chang

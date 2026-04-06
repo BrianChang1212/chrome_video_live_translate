@@ -1,6 +1,13 @@
 # 新進／新環境上手（Video Live Translate）
 
-本文件對齊 **`manifest.json` → `version`（目前 0.7.3）**；完整文件索引見 **[`DOC_SYNC.zh-TW.md`](DOC_SYNC.zh-TW.md)**。**僅本機** whisper-server（ASR）與 Ollama（翻譯）；語向與切段等與 Popup／選項即時同步。
+## Languages
+
+- [English](ONBOARDING.md)
+- [繁體中文](ONBOARDING.zh-TW.md)
+
+---
+
+本文件對齊 **`manifest.json` → `version`（目前 0.7.3）**；完整文件索引見 **[`DOC_SYNC.md`](DOC_SYNC.md)**（英文）／**[`DOC_SYNC.zh-TW.md`](DOC_SYNC.zh-TW.md)**（繁中）。**僅本機** whisper-server（ASR）與 Ollama（翻譯）；語向與切段等與 Popup／選項即時同步。
 
 ---
 
@@ -22,14 +29,15 @@ chrome_video_live_translate/
   LICENSE
   manifest.json
   README.md
+  README.zh-TW.md
   icons/                     # 擴充圖示（manifest / 工具列）
   docs/
-    DOC_SYNC.zh-TW.md        # 版號與 docs 同步索引（見本檔 §1 導讀）
-    LOCAL_SETUP.zh-TW.md     # 安裝與啟動教學（與選項頁「首次使用」互補）
-    DEVELOPMENT_PROGRESS.zh-TW.md
-    PRODUCT_DESIGN_FRAMEWORK.zh-TW.md
-    OPTIMIZATION_NOTES.zh-TW.md
-    PHASE_REPORT_TRANSLATION_PIPELINE.zh-TW.md  # 歷史 v0.5.6
+    DOC_SYNC.md / .zh-TW.md
+    LOCAL_SETUP.md / .zh-TW.md
+    DEVELOPMENT_PROGRESS.md / .zh-TW.md
+    PRODUCT_DESIGN_FRAMEWORK.md / .zh-TW.md
+    OPTIMIZATION_NOTES.md / .zh-TW.md
+    PHASE_REPORT_TRANSLATION_PIPELINE.md / .zh-TW.md  # 歷史 v0.5.6
   scripts/                   # 啟動 whisper-server、Ollama（OLLAMA_ORIGINS）、煙測
   src/
     shared/                  # 常數、語系表（vlt_locale_meta）、訊息字串、翻譯引擎正規化
@@ -81,14 +89,14 @@ chrome_video_live_translate/
 
 ## 6. 建議閱讀順序
 
-1. **README.md**
-2. **`docs/DOC_SYNC.zh-TW.md`**（版號與各文件對齊索引；**維護／發佈改號時必讀**）
-3. **`docs/LOCAL_SETUP.zh-TW.md`**（若尚未安裝本機服務）
-4. 本文件 **ONBOARDING.zh-TW.md**
-5. **`docs/DEVELOPMENT_PROGRESS.zh-TW.md`**（現階段完成度與待辦快照）
-6. **`docs/PRODUCT_DESIGN_FRAMEWORK.zh-TW.md`**（產品框架草案，可選）
-7. **`docs/OPTIMIZATION_NOTES.zh-TW.md`**（效能／管線構想與本機啟動限制，可選）
-8. **`docs/PHASE_REPORT_TRANSLATION_PIPELINE.zh-TW.md`**（僅作 v0.5.6 歷程參考，見檔首說明）
+1. **`README.md`**（英文）或 **`README.zh-TW.md`**（繁中）
+2. **`docs/DOC_SYNC.md`**／**`.zh-TW.md`**（版號與各文件對齊索引；**維護／發佈改號時必讀**）
+3. **`docs/LOCAL_SETUP.md`**／**`.zh-TW.md`**（若尚未安裝本機服務）
+4. **`docs/ONBOARDING.md`**／**本檔 `.zh-TW.md`**
+5. **`docs/DEVELOPMENT_PROGRESS.md`**／**`.zh-TW.md`**
+6. **`docs/PRODUCT_DESIGN_FRAMEWORK.md`**／**`.zh-TW.md`**（可選）
+7. **`docs/OPTIMIZATION_NOTES.md`**／**`.zh-TW.md`**（可選）
+8. **`docs/PHASE_REPORT_TRANSLATION_PIPELINE.md`**／**`.zh-TW.md`**（僅 v0.5.6 歷程參考，見檔首）
 
 ---
 
@@ -99,4 +107,4 @@ chrome_video_live_translate/
 
 ---
 
-*掃描範圍：`src/`、`scripts/`、`manifest.json`；版號以 `manifest.json` → **`version`** 為準；文件對齊見 **`docs/DOC_SYNC.zh-TW.md`**。*
+*掃描範圍：`src/`、`scripts/`、`manifest.json`；版號以 `manifest.json` → **`version`** 為準；文件對齊見 **`docs/DOC_SYNC.md`**／**`.zh-TW.md`**。*

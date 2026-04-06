@@ -1,7 +1,14 @@
 # 本機環境安裝與啟動（whisper-server、Ollama）
 
+## Languages
+
+- [English](LOCAL_SETUP.md)
+- [繁體中文](LOCAL_SETUP.zh-TW.md)
+
+---
+
 > 給**尚未安裝**或**不知如何啟動服務**的使用者。Chrome 擴充**無法**替你安裝或執行本機程式，請在本機完成下列步驟。  
-> 擴充版號以根目錄 `manifest.json` 的 **`version`** 為準（目前 **0.7.3**）。**各文件與版號對齊索引**見 [`docs/DOC_SYNC.zh-TW.md`](DOC_SYNC.zh-TW.md)。
+> 擴充版號以根目錄 `manifest.json` 的 **`version`** 為準（目前 **0.7.3**）。**各文件與版號對齊索引**見 [`docs/DOC_SYNC.md`](DOC_SYNC.md)／[`DOC_SYNC.zh-TW.md`](DOC_SYNC.zh-TW.md)。
 
 ---
 
