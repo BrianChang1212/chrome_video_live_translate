@@ -1,9 +1,16 @@
 # Video Live Translate — 產品設計框架（供確認）
 
+## Languages
+
+- [English](PRODUCT_DESIGN_FRAMEWORK.md)
+- [繁體中文](PRODUCT_DESIGN_FRAMEWORK.zh-TW.md)
+
+---
+
 | 項目 | 內容 |
 |------|------|
 | 文件版本 | 0.1（草案） |
-| 對應程式狀態 | **`version` 0.7.3**（以根目錄 `manifest.json` 為準；**文件同步清單** [`DOC_SYNC.zh-TW.md`](DOC_SYNC.zh-TW.md)）：分頁擷音、offscreen、**本機 whisper-server ASR**、**本機 Ollama 多語向翻譯**、浮層字幕；Popup／選項 **語向同步**與切段快速調整（詳見 README、[`LOCAL_SETUP.zh-TW.md`](LOCAL_SETUP.zh-TW.md)、**[`DEVELOPMENT_PROGRESS.zh-TW.md`](DEVELOPMENT_PROGRESS.zh-TW.md)**、[`OPTIMIZATION_NOTES.zh-TW.md`](OPTIMIZATION_NOTES.zh-TW.md)；本表部分構想仍為長期草案） |
+| 對應程式狀態 | **`version` 0.7.3**（以根目錄 `manifest.json` 為準；**文件同步** [`DOC_SYNC.md`](DOC_SYNC.md)／[`.zh-TW`](DOC_SYNC.zh-TW.md)）：分頁擷音、offscreen、**本機 whisper-server ASR**、**本機 Ollama 多語向翻譯**、浮層字幕；Popup／選項 **語向同步**與切段快速調整（詳見 README、[`LOCAL_SETUP.md`](LOCAL_SETUP.md)、[`DEVELOPMENT_PROGRESS.md`](DEVELOPMENT_PROGRESS.md)、[`OPTIMIZATION_NOTES.md`](OPTIMIZATION_NOTES.md)；本表部分構想仍為長期草案） |
 | 目的 | 對齊「做什麼、先後順序、如何驗收」，供產品／技術／上架審查前確認 |
 
 ---

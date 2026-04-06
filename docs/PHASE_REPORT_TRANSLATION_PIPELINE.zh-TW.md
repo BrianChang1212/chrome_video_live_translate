@@ -1,6 +1,13 @@
 # 階段性完成報告：英文語音 → 繁中字幕（翻譯管線與 Ollama 整合）
 
-> **歷史文件（v0.5.x 存檔）：** 與現行程式與設定**可能不一致**。**現況**請以 **`docs/DOC_SYNC.zh-TW.md`**（版號索引）、**`docs/DEVELOPMENT_PROGRESS.zh-TW.md`**、根目錄 **README.md**、**`docs/ONBOARDING.zh-TW.md`** 與 **`src/background/local_pipeline.js`** 為準（本機 whisper-server + Ollama；**多語向**與 UI 行為見 README／`src/shared/vlt_locale_meta.js` 等）。
+## Languages
+
+- [English](PHASE_REPORT_TRANSLATION_PIPELINE.md)
+- [繁體中文](PHASE_REPORT_TRANSLATION_PIPELINE.zh-TW.md)
+
+---
+
+> **歷史文件（v0.5.x 存檔）：** 與現行程式與設定**可能不一致**。**現況**請以 **`docs/DOC_SYNC.md`**／**`.zh-TW.md`**（版號索引）、**`docs/DEVELOPMENT_PROGRESS.*`**、根目錄 **README**、**`docs/ONBOARDING.*`** 與 **`src/background/local_pipeline.js`** 為準（本機 whisper-server + Ollama；**多語向**與 UI 行為見 README／`src/shared/vlt_locale_meta.js` 等）。
 
 | 項目 | 內容 |
 |------|------|
@@ -115,7 +122,7 @@
 |------|------|
 | 安全性 | `OLLAMA_ORIGINS=*` 最寬鬆；生產環境可改為特定 `chrome-extension://<id>`（若 Ollama 版本支援）。 |
 | 模型差異 | 非 Qwen3 之模型若 chat 行為不同，仍可依現有 **chat → generate** 順序涵蓋多數情況。 |
-| 後續功能（非本階段） | 整段 SRT 匯出、可選顯示雙語、翻譯快取等，可見既有產品框架文件 `docs/PRODUCT_DESIGN_FRAMEWORK.zh-TW.md`。 |
+| 後續功能（非本階段） | 整段 SRT 匯出、可選顯示雙語、翻譯快取等，可見 `docs/PRODUCT_DESIGN_FRAMEWORK.md`／`.zh-TW.md`。 |
 
 ---
 
@@ -140,4 +147,4 @@
 
 ---
 
-*本文件正文由專案維護流程產出，與當時 `manifest.json` **0.5.6** 對齊。**現行程式版號**請以根目錄 `manifest.json`（目前 **0.7.3**）及 **[`docs/DOC_SYNC.zh-TW.md`](DOC_SYNC.zh-TW.md)** 為準。*
+*本文件正文由專案維護流程產出，與當時 `manifest.json` **0.5.6** 對齊。**現行程式版號**請以根目錄 `manifest.json`（目前 **0.7.3**）及 **[`docs/DOC_SYNC.md`](DOC_SYNC.md)**／**[`.zh-TW.md`](DOC_SYNC.zh-TW.md)** 為準。*
