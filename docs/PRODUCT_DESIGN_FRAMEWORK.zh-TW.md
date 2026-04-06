@@ -1,12 +1,5 @@
 # Video Live Translate — 產品設計框架（供確認）
 
-## Languages
-
-- [English](PRODUCT_DESIGN_FRAMEWORK.md)
-- [繁體中文](PRODUCT_DESIGN_FRAMEWORK.zh-TW.md)
-
----
-
 | 項目 | 內容 |
 |------|------|
 | 文件版本 | 0.1（草案） |
@@ -166,3 +159,10 @@
 ---
 
 **下一步建議**：你回覆「待確認清單」後，可再產出一份較短的 **PRD 附錄**（使用者故事 AC／錯誤碼表／文案草稿），或直接进入技術架構圖與 API 選型表。
+
+---
+
+## Languages
+
+- [English](PRODUCT_DESIGN_FRAMEWORK.md)
+- [繁體中文](PRODUCT_DESIGN_FRAMEWORK.zh-TW.md)

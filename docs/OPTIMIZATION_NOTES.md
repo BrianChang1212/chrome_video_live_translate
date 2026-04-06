@@ -1,12 +1,5 @@
 # Optimization notes (Video Live Translate)
 
-## Languages
-
-- [English](OPTIMIZATION_NOTES.md)
-- [繁體中文](OPTIMIZATION_NOTES.zh-TW.md)
-
----
-
 > **Location:** this file in the **same repo** as the extension (`docs/OPTIMIZATION_NOTES.md`)—**not** a separate optimization repo.  
 > **Source:** notes from pipeline discussions (tab capture → whisper-server ASR → Ollama translation); language pairs follow user settings.  
 > **Created:** 2026-04-06｜**Last updated:** 2026-04-06 (**full doc sync**; app **manifest 0.7.3**; index [`DOC_SYNC.md`](DOC_SYNC.md); §6 local auto-start)
@@ -87,3 +80,10 @@ Extension / service worker / offscreen logic—not mandatory Whisper/Ollama core
 ---
 
 *Read with [`DOC_SYNC.md`](DOC_SYNC.md), `docs/DEVELOPMENT_PROGRESS.md`, `tasks/todo.md` for version alignment and backlog.*
+
+---
+
+## Languages
+
+- [English](OPTIMIZATION_NOTES.md)
+- [繁體中文](OPTIMIZATION_NOTES.zh-TW.md)

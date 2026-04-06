@@ -1,12 +1,5 @@
 # Documentation & version sync (Video Live Translate)
 
-## Languages
-
-- [English](DOC_SYNC.md)
-- [繁體中文](DOC_SYNC.zh-TW.md)
-
----
-
 **Authoritative app version:** the **`"version"`** field in root `manifest.json`.
 
 | Field | Current value |
@@ -22,8 +15,8 @@
 | File | Purpose | Must reflect current build |
 |------|---------|----------------------------|
 | [`DEVELOPMENT_PROGRESS.md`](DEVELOPMENT_PROGRESS.md) / [`.zh-TW`](DEVELOPMENT_PROGRESS.zh-TW.md) | Snapshot: done / backlog | Header manifest version, summary, §5 |
-| [`ONBOARDING.md`](ONBOARDING.md) / [`.zh-TW`](ONBOARDING.zh-TW.md) | Onboarding, tree, data flow | Opening version line, product blurb |
-| [`LOCAL_SETUP.md`](LOCAL_SETUP.md) / [`.zh-TW`](LOCAL_SETUP.zh-TW.md) | Local whisper-server / Ollama | “Per manifest” note, service steps |
+| [`ONBOARDING.md`](ONBOARDING.md) / [`.zh-TW`](ONBOARDING.zh-TW.md) | Onboarding, tree, data flow, **§7 verification** (smoke scripts + `npm test` / `test:integration`) | Opening version line, product blurb, §7 table |
+| [`LOCAL_SETUP.md`](LOCAL_SETUP.md) / [`.zh-TW`](LOCAL_SETUP.zh-TW.md) | Local whisper-server / Ollama; **§5** Node checks (`npm test`, `test:integration`) | “Per manifest” note, service steps, §5 |
 | [`OPTIMIZATION_NOTES.md`](OPTIMIZATION_NOTES.md) / [`.zh-TW`](OPTIMIZATION_NOTES.zh-TW.md) | Performance & platform ideas | Last updated, pipeline description |
 | [`PRODUCT_DESIGN_FRAMEWORK.md`](PRODUCT_DESIGN_FRAMEWORK.md) / [`.zh-TW`](PRODUCT_DESIGN_FRAMEWORK.zh-TW.md) | Product framework draft | “Maps to code” table |
 | [`PHASE_REPORT_TRANSLATION_PIPELINE.md`](PHASE_REPORT_TRANSLATION_PIPELINE.md) / [`.zh-TW`](PHASE_REPORT_TRANSLATION_PIPELINE.zh-TW.md) | **Historical** (anchored 0.5.6) | Header points to current docs only; **do not rewrite** body for new versions |
@@ -40,3 +33,10 @@
 ---
 
 *Review alongside `manifest.json` **0.7.3**; bump the table when the version changes.*
+
+---
+
+## Languages
+
+- [English](DOC_SYNC.md)
+- [繁體中文](DOC_SYNC.zh-TW.md)

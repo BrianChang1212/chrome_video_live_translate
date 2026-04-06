@@ -1,12 +1,5 @@
 # Video Live Translate — product design framework (draft)
 
-## Languages
-
-- [English](PRODUCT_DESIGN_FRAMEWORK.md)
-- [繁體中文](PRODUCT_DESIGN_FRAMEWORK.zh-TW.md)
-
----
-
 | Item | Content |
 |------|---------|
 | Doc version | 0.1 (draft) |
@@ -166,3 +159,10 @@ Open a normal page with video
 ---
 
 **Next step:** after the checklist, a shorter **PRD appendix** (user stories, AC, error copy) or deeper architecture/API tables.
+
+---
+
+## Languages
+
+- [English](PRODUCT_DESIGN_FRAMEWORK.md)
+- [繁體中文](PRODUCT_DESIGN_FRAMEWORK.zh-TW.md)

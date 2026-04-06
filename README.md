@@ -1,12 +1,5 @@
 # Video Live Translate (Chrome Extension)
 
-## Languages
-
-- [English](README.md)
-- [繁體中文](README.zh-TW.md)
-
----
-
 **Extension version:** **0.7.3** (matches **`version`** in root `manifest.json`). **Doc sync index:** [`docs/DOC_SYNC.md`](docs/DOC_SYNC.md).
 
 Manifest V3: **capture the active tab’s audio** and run a **fully local** pipeline: **ASR (Whisper) → (optional) Ollama translation → overlay subtitles**.
@@ -15,7 +8,7 @@ Manifest V3: **capture the active tab’s audio** and run a **fully local** pipe
 - **Translation:** local **Ollama** (`/api/chat`, `think=false`); **source and target** can be set in Popup or Options (**many common languages**; typical pairs include EN/JA → Traditional Chinese). Translation can be turned off to show recognition text only.
 - **Cost:** the extension and this pipeline use **no per-call third-party inference APIs**; cost is **your own hardware / power** and maintaining local services.
 
-**Sections (top to bottom):** overview → architecture → quick start → debugging → repo layout → related projects → troubleshooting → privacy & limits → distribution & contributing → license
+**Sections (top to bottom):** overview → architecture → quick start → debugging → repo layout → related projects → troubleshooting → privacy & limits → distribution & contributing → license → languages
 
 **Development status:** [`docs/DEVELOPMENT_PROGRESS.md`](docs/DEVELOPMENT_PROGRESS.md) (aligned with `manifest.json`); task checklist [`tasks/todo.md`](tasks/todo.md). **Performance / pipeline ideas:** [`docs/OPTIMIZATION_NOTES.md`](docs/OPTIMIZATION_NOTES.md). **How versions map across docs:** [`docs/DOC_SYNC.md`](docs/DOC_SYNC.md).
 
@@ -115,8 +108,13 @@ Enable **debug overlay** in Popup → reload the video tab → capture again; **
 chrome_video_live_translate/
   LICENSE
   manifest.json
+  package.json
   README.md
   README.zh-TW.md
+  tests/
+    architecture/
+    integration/
+    helpers/
   icons/
   docs/
     DOC_SYNC.md
@@ -144,6 +142,11 @@ chrome_video_live_translate/
     popup/
     offscreen/
 ```
+
+### Automated tests (Node 18+)
+
+- **`npm test`** — Architecture / contract tests with a **mocked** `fetch` (no local services): `tests/architecture/`.
+- **`npm run test:integration`** — Optional **live** checks against **whisper-server** and **Ollama** (sets `VLT_INTEGRATION` if unset). Each test **skips** if the corresponding service is unreachable, so the command still exits **0**. Override URLs: `VLT_WHISPER_URL`, `VLT_OLLAMA_URL`, `VLT_OLLAMA_MODEL`. Optional real audio for ASR-heavy cases: `VLT_INTEGRATION_WAV_BASE64`. Windows: `scripts\run_integration_tests.bat`.
 
 See **`docs/ONBOARDING.md`** (if anything conflicts with `manifest.json`, prefer this README and source).
 
@@ -194,3 +197,10 @@ Issues and PRs welcome. Store listing needs its own privacy / permission narrati
 
 - **SPDX:** `Apache-2.0`
 - **Copyright:** Copyright 2026 Brian Chang
+
+---
+
+## Languages
+
+- [English](README.md)
+- [繁體中文](README.zh-TW.md)

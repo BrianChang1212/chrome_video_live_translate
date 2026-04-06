@@ -1,12 +1,5 @@
 # Phase report: English speech → Traditional Chinese subtitles (translation pipeline & Ollama)
 
-## Languages
-
-- [English](PHASE_REPORT_TRANSLATION_PIPELINE.md)
-- [繁體中文](PHASE_REPORT_TRANSLATION_PIPELINE.zh-TW.md)
-
----
-
 > **Historical document (v0.5.x archive):** May **not** match today’s code/settings. **Current state:** [`docs/DOC_SYNC.md`](DOC_SYNC.md) (version index), [`docs/DEVELOPMENT_PROGRESS.md`](DEVELOPMENT_PROGRESS.md), root **README.md**, [`docs/ONBOARDING.md`](ONBOARDING.md), and **`src/background/local_pipeline.js`** (local whisper-server + Ollama; **multi-pair** and UI: README / `src/shared/vlt_locale_meta.js`).
 
 | Item | Content |
@@ -147,3 +140,10 @@ vs **`whisper_transcribe_test_repo`:** **no code merge** (that repo: **whisper-c
 ---
 
 *Produced by the project maintenance process for `manifest.json` **0.5.6**. **Current app version:** root `manifest.json` (currently **0.7.3**) and **[`docs/DOC_SYNC.md`](DOC_SYNC.md)**.*
+
+---
+
+## Languages
+
+- [English](PHASE_REPORT_TRANSLATION_PIPELINE.md)
+- [繁體中文](PHASE_REPORT_TRANSLATION_PIPELINE.zh-TW.md)

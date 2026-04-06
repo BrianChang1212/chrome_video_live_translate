@@ -1,0 +1,12 @@
+{
+  "name": "chrome-video-live-translate",
+  "private": true,
+  "description": "Chrome MV3 extension tests (architecture contracts); extension has no npm runtime deps.",
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "node --test --test-concurrency=1 tests/architecture/full_architecture.test.mjs",
+    "test:integration": "node -r ./tests/integration/enable_integration.cjs --test tests/integration/live_services.test.mjs"
+  }
+}
